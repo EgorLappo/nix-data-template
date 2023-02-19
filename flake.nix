@@ -1,11 +1,11 @@
 {
   description = "my setup for data projects";
 
-  outputs = { self }: {
+  outputs = self: rec {
 
     templates = {
-      default = {
-        path = ./default;
+      def = {
+        path = ./def;
         description = "default template";
       };
 
@@ -15,7 +15,7 @@
       };
     };
 
-    defaultTemplate = self.templates.default;
+    defaultTemplate = templates.def;
 
   };
 }
