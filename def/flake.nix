@@ -26,33 +26,6 @@
       };
 
       py = pkgs.python3;
-
-      rchitect = py.pkgs.buildPythonPackage rec {
-          pname = "rchitect";
-          version = "0.3.40";
-          src = py.pkgs.fetchPypi {
-            inherit pname version;
-            sha256 = "1c5de5c4914dcb34225e7b62dbfc5df7b857b0b4bc18d4adf03611c45847b8b7";
-          };
-          doCheck = false;
-          propagatedBuildInputs = with pkgs.python3Packages;  [
-            six cffi
-          ];
-        };
-
-      radian = py.pkgs.buildPythonPackage rec {
-          pname = "radian";
-          version = "0.6.4";
-          src = py.pkgs.fetchPypi {
-            inherit pname version;
-            sha256 = "4524a10335a6464a423a58ab85544fb37ebb9973cd647b00cc4eb40637bdf40c";
-          };
-          doCheck = false;
-          propagatedBuildInputs = with pkgs.python3Packages;  [
-            numpy pygments prompt_toolkit rchitect
-          ];
-        };
-      
       dontTestPackage = drv: drv.overridePythonAttrs (old: { doCheck = false; });
       python-env = py.withPackages (ps: with ps; [ 
         pip
@@ -64,7 +37,7 @@
         statsmodels
         matplotlib
         (dontTestPackage seaborn) # tests fail on darwin due to different numerical results on intel vs ARM
-        radian
+        
       ]);
 
     

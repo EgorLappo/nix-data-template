@@ -1,6 +1,0 @@
-options(radian.color_scheme = "native")
-
-options(radian.editing_mode = "vi")
-options(radian.show_vi_mode_prompt = TRUE)
-
-options(radian.highlight_matching_bracket = TRUE)
