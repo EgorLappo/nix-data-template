@@ -66,7 +66,7 @@
       devShells.default = with pkgs; mkShell {
         name = "shellEnv";
         buildInputs = [
-          R-env python-env cmdstan
+          R-env python-env cmdstan.${system}.defaultPackage
         ];
 
         CMDSTAN = cmdstanpath;

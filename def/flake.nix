@@ -24,6 +24,19 @@
           scales
         ];
       };
+
+      radian = pkgs.python3.pkgs.buildPythonPackage rec {
+          pname = "radian";
+          version = "0.6.4";
+          src = fetchPypi {
+            inherit pname version;
+            sha256 = "4524a10335a6464a423a58ab85544fb37ebb9973cd647b00cc4eb40637bdf40c";
+          };
+          doCheck = false;
+          propagatedBuildInputs = with pkgs.python3Packages;  [
+            numpy
+          ];
+        };
       
       dontTestPackage = drv: drv.overridePythonAttrs (old: { doCheck = false; });
       python-env = pkgs.python3.withPackages (ps: with ps; [ 
@@ -36,6 +49,7 @@
         statsmodels
         matplotlib
         (dontTestPackage seaborn) # tests fail on darwin due to different numerical results on intel vs ARM
+        radian
       ]);
 
     
