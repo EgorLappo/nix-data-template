@@ -25,7 +25,22 @@
         ];
       };
 
-      radian = pkgs.python3.pkgs.buildPythonPackage rec {
+      py = pkgs.python3;
+
+      rchitect = py.pkgs.buildPythonPackage rec {
+          pname = "rchitect";
+          version = "0.3.40";
+          src = fetchPypi {
+            inherit pname version;
+            sha256 = "1c5de5c4914dcb34225e7b62dbfc5df7b857b0b4bc18d4adf03611c45847b8b7";
+          };
+          doCheck = false;
+          propagatedBuildInputs = with pkgs.python3Packages;  [
+            six cffi
+          ];
+        };
+
+      radian = py.pkgs.buildPythonPackage rec {
           pname = "radian";
           version = "0.6.4";
           src = fetchPypi {
@@ -34,12 +49,12 @@
           };
           doCheck = false;
           propagatedBuildInputs = with pkgs.python3Packages;  [
-            numpy
+            numpy pygments prompt_toolkit rchitect
           ];
         };
       
       dontTestPackage = drv: drv.overridePythonAttrs (old: { doCheck = false; });
-      python-env = pkgs.python3.withPackages (ps: with ps; [ 
+      python-env = py.withPackages (ps: with ps; [ 
         pip
         tqdm
         numpy
