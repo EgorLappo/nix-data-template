@@ -5,12 +5,12 @@
 
     templates = {
       default = {
-        path = "./default";
+        path = ./default;
         description = "default template";
       };
 
       with_stan = {
-        path = "./with_stan";
+        path = ./with_stan;
         description = "default template with cmdstan, cmdstanr";
       };
     };
