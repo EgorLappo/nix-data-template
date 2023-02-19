@@ -1,11 +1,21 @@
 {
-  description = "A very basic flake";
+  description = "my setup for data projects";
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self }: {
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    templates = {
+      default = {
+        path = "./default";
+        description = "default template";
+      };
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+      with_stan = {
+        path = "./with_stan";
+        description = "default template with cmdstan, cmdstanr";
+      };
+    };
+
+    defaultTemplate = self.templates.default;
 
   };
 }
