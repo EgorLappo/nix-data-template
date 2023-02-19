@@ -11,9 +11,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    cmdstan.url = "github:EgorLappo/cmdstan-flake";
   };
 
-  outputs = { self, nixpkgs, flake-utils }: 
+  outputs = { self, nixpkgs, flake-utils, cmdstan }: 
     
   flake-utils.lib.eachDefaultSystem (system:
     let
@@ -60,7 +61,6 @@
         (dontTestPackage seaborn) # tests fail on darwin due to different numerical results on intel vs ARM
       ]);
 
-      cmdstan = pkgs.cmdstan;
       cmdstanpath = "${cmdstan}/opt/cmdstan";
     in rec {
       devShells.default = with pkgs; mkShell {
