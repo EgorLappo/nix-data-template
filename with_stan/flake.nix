@@ -60,7 +60,7 @@
         (dontTestPackage seaborn) # tests fail on darwin due to different numerical results on intel vs ARM
       ]);
 
-      cmdstan = import cmdstan.nix;
+      cmdstan = pkgs.cmdstan;
       cmdstanpath = "${cmdstan}/opt/cmdstan";
     in rec {
       devShells.default = with pkgs; mkShell {
