@@ -54,7 +54,6 @@
           export PYTHONPATH="${python-env}/bin/python"
           alias rs="${R-env}/bin/Rscript"
           alias R="${R-env}/bin/R"
-          alias r="radian --r-binary=${R-env}/bin/R"
           alias py="${python-env}/bin/python"
         '';
       };
