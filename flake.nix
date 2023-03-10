@@ -9,9 +9,14 @@
         description = "default template";
       };
 
-      with_stan = {
-        path = ./with_stan;
+      with_cmdstan = {
+        path = ./with_cmdstan;
         description = "default template with cmdstan, cmdstanr";
+      };
+      
+      with_rstan = {
+        path = ./with_rstan;
+        description = "default template with rstan";
       };
     };
 
